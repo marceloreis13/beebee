@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
+				<string>com.googleusercontent.apps.585924498172-3uo2ui5emhn746qlonu6ahijc5fs68cd</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+	</array>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>pt</string>
+	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Para melhorar a sua experiência, utilizamos a sua localização para fornecer funcionalidades baseadas em localização enquanto o aplicativo está em uso.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>A sua localização é necessária para fornecer navegação precisa e recomendações personalizadas, tanto quando estiver a utilizar ativamente o aplicativo quanto em segundo plano.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Necessitamos de acesso à câmera para capturar fotos e vídeos dentro do aplicativo.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Precisamos de acesso ao microfone para gravar áudio ou fazer chamadas de voz dentro do aplicativo.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Necessitamos de acesso à sua biblioteca de fotos para importar ou salvar imagens.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Precisamos de acesso aos seus contatos para importar ou conectar-se com amigos dentro do aplicativo.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Necessitamos de acesso aos seus calendários para fornecer recursos relacionados a eventos.</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>Precisamos de acesso às suas tarefas para fornecer recursos relacionados a lembretes.</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>CADisableMinimumFrameDurationOnPhone</key>
+	<true/>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>App Scaffold</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>App Scaffold</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(FLUTTER_BUILD_NAME)</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>whatsapp</string>
+		<string>itms</string>
+		<string>itms-beta</string>
+	</array>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+	<key>com.apple.security.network.client</key>
+	<true/>
+</dict>
+</plist>

@@ -1,0 +1,47 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+update_fastlane
+
+default_platform(:ios)
+
+lane :review_build do
+  sh("sh ./mobile/scripts/2-bump-version.sh build")
+  sh("sh ./mobile/scripts/3-create-review-from-dev.sh")
+  sh("sh ./mobile/scripts/4-send-to-testflight.sh")
+end
+
+lane :review_patch do
+  sh("sh ./mobile/scripts/2-bump-version.sh patch")
+  sh("sh ./mobile/scripts/3-create-review-from-dev.sh")
+  sh("sh ./mobile/scripts/4-send-to-testflight.sh")
+end
+
+lane :review_minor do
+  sh("sh ./mobile/scripts/2-bump-version.sh minor")
+  sh("sh ./mobile/scripts/3-create-review-from-dev.sh")
+  sh("sh ./mobile/scripts/4-send-to-testflight.sh")
+end
+
+lane :review_major do
+  sh("sh ./mobile/scripts/2-bump-version.sh major")
+  sh("sh ./mobile/scripts/3-create-review-from-dev.sh")
+  sh("sh ./mobile/scripts/4-send-to-testflight.sh")
+end
+
+lane :approved do
+  sh("sh ./mobile/scripts/5-create-tag-release.sh")
+end
+

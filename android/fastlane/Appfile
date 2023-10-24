@@ -1,0 +1,2 @@
+json_key_file("./material/android-keys/pc-api-6892811645005589066-97-f4481879658d.json") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
+package_name("com.bundle.id.here") # e.g. com.krausefx.app
