@@ -60,7 +60,7 @@ class PlaceListView extends StatefulWidget {
 The Routes layer manages navigation and dependency injection within the application. It provides a structured way to navigate between different views and components while maintaining a separation of concerns.
 
 ### 3. Structure
-.
+<pre>
 ├── app
 │   ├── constants
 │   │   └── constant.files.here.dart
@@ -109,7 +109,7 @@ The Routes layer manages navigation and dependency injection within the applicat
         ├── list
         │   └── list.files.here.dart
         └── widgets.files.here.dart
-
+</pre>
 
 ### 4. Conclusion
 The Vertical Mobi Project's Flutter architecture demonstrates a clear separation of concerns, modularity, and a structured approach to data handling, business logic, and user interface components. This architecture enhances maintainability, reusability, and testability, making the Vertical Mobi Project a robust and scalable application for future enhancements.
