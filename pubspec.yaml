@@ -5,7 +5,7 @@ description: A new Flutter project.
 version: 1.0.13+47
 
 environment:
-  sdk: '>=3.0.5 <4.0.0'
+  sdk: ">=3.0.5 <4.0.0"
 
 dependencies:
   flutter:
@@ -14,13 +14,9 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  # Vertical Mobi
-  # vertical_ui_lib:
-  #   path: /Users/marceloreis/Mobile/Vertical/libs/flutter/vertical_ui_lib
-    # git:
-    #   url: https://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@github.com/Vertical-Mobi/vertical-flutter-ui-lib.git
-    #   ref: main
-
+  # StoryBook
+  storybook:
+    path: package/storybook
 
   # Google
   firebase_core: ^2.16.0
@@ -42,9 +38,9 @@ dependencies:
   flutter_udid: ^2.0.1
   logger: ^2.0.2+1
   flutter_secure_storage: ^9.0.0
-  rate_my_app: ^2.0.0  
+  rate_my_app: ^2.0.0
   flutter_fgbg: ^0.3.0
-  
+
   # Layout
 
   # Fonts/Texts/Forms
@@ -100,4 +96,3 @@ flutter:
         - asset: assets/fonts/Ubuntu/Ubuntu-MediumItalic.ttf
         - asset: assets/fonts/Ubuntu/Ubuntu-Regular.ttf
           weight: 700
-

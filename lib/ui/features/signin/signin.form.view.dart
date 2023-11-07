@@ -102,6 +102,13 @@ class _SigninFormViewState extends State<SigninFormView>
               child: const Text("Entrar!"),
             ),
           ),
+          SizedBox(
+            width: 300,
+            child: ElevatedButton(
+              onPressed: onStoryBookOnPressed,
+              child: const Text("StoryBook!"),
+            ),
+          ),
           SigninFormVendorsWidget(
             btnCredentialsLoginDidTapped: btnCredentialsLoginDidTapped,
             btnGoogleLoginDidTapped: btnGoogleLoginDidTapped,
@@ -109,6 +116,13 @@ class _SigninFormViewState extends State<SigninFormView>
           ),
         ],
       ),
+    );
+  }
+
+  Future onStoryBookOnPressed() async {
+    Navigator.pushNamed(
+      context,
+      Routes.storyBookView.value,
     );
   }
 

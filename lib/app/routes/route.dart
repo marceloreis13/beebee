@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // Available pages
 import 'package:app/ui/features/signin/signin.form.view.dart';
 import 'package:app/ui/features/vehicle/vehicle.list.view.dart';
+import 'package:storybook/storybook.dart';
 
 // variable for our route names
 enum Routes {
@@ -16,6 +17,8 @@ enum Routes {
   signinFormRecoveryView,
   signinFormValidationView,
   signinFormNewPassView,
+
+  storyBookView
 }
 
 extension RoutesExtension on Routes {
@@ -75,12 +78,14 @@ Routes parseRoute(dynamic name) {
 // controller function with switch statement to control page route flow
 Route<dynamic> controller(RouteSettings settings) {
   Routes route = parseRoute(settings.name);
-  final arguments = (settings.arguments ?? <String, dynamic>{}) as Map;
+  // final arguments = (settings.arguments ?? <String, dynamic>{}) as Map;
 
   switch (route) {
     // Vehicle
     case Routes.vehicleListView:
       return MaterialPageRoute(builder: (context) => VehicleListView.init());
+    case Routes.storyBookView:
+      return MaterialPageRoute(builder: (context) => const StoryBook());
 
     default:
       throw ('this route name does not exist');
