@@ -15,8 +15,8 @@ dependencies:
     sdk: flutter
 
   # Vertical Mobi
-  vertical_ui_lib:
-    path: /Users/marceloreis/Mobile/Vertical/libs/flutter/vertical_ui_lib
+  # vertical_ui_lib:
+  #   path: /Users/marceloreis/Mobile/Vertical/libs/flutter/vertical_ui_lib
     # git:
     #   url: https://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@github.com/Vertical-Mobi/vertical-flutter-ui-lib.git
     #   ref: main

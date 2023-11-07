@@ -5,8 +5,8 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:flutter_udid/flutter_udid.dart';
-import 'package:smarttime/domain/models/model.dart';
-import 'package:smarttime/domain/models/user/user.model.dart';
+import 'package:app/domain/models/model.dart';
+import 'package:app/domain/models/user/user.model.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:recase/recase.dart';
@@ -182,7 +182,7 @@ class Env {
     Remote.appMessageSignupFailure.constant: 'Autenticação Falhou 😩',
 
     // Configurations
-    Remote.appConnectionTimeout.constant: 15,
+    Remote.appConnectionTimeout.constant: 20,
     Remote.appSnackTimeExpire.constant: 5,
 
     // Flags

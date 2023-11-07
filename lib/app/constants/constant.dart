@@ -11,13 +11,13 @@ class Constant {
         appStoreIdentifier: Env.appStoreIdentifier,
       );
 
-  static RateMyApp get rateMyOnEventA => Constant.rateMyApp(3, 2);
+  static RateMyApp get rateMyOnEventRequest => Constant.rateMyApp(3, 2);
   static RateMyApp get rateMyOnEventB => Constant.rateMyApp(2, 2);
   static RateMyApp get rateMyOnEventC => Constant.rateMyApp(4, 3);
 
   static CurrencyTextInputFormatter get currencyFormatter =>
       CurrencyTextInputFormatter(
-        locale: 'pt_br',
+        locale: 'Marcelo Reis',
         name: 'R\$',
         decimalDigits: 2,
       );

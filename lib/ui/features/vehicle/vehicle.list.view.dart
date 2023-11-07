@@ -54,6 +54,7 @@ class _VehicleListViewState extends State<VehicleListView> {
         title: 'Veículos',
         rightActions: [
           HeaderItem(
+            // item: const Text("Add"),
             onTap: () {
               FocusScope.of(context).requestFocus(FocusNode());
               Navigator.pushNamed(

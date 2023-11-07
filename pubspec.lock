@@ -65,14 +65,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.1"
-  bottom_navy_bar:
-    dependency: transitive
-    description:
-      name: bottom_navy_bar
-      sha256: b30d9a566909b9a56f366b9e8abe0c24ef8939e4b464d1cad5ded6a1e2dcfca1
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.0.0"
   characters:
     dependency: transitive
     description:
@@ -842,14 +834,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
-  sliver_tools:
-    dependency: transitive
-    description:
-      name: sliver_tools
-      sha256: eae28220badfb9d0559207badcbbc9ad5331aac829a88cb0964d330d2a4636a6
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.2.12"
   source_span:
     dependency: transitive
     description:
@@ -978,13 +962,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.4"
-  vertical_ui_lib:
-    dependency: "direct main"
-    description:
-      path: "/Users/marceloreis/Mobile/Vertical/libs/flutter/vertical_ui_lib"
-      relative: false
-    source: path
-    version: "0.0.1"
   watcher:
     dependency: transitive
     description:
