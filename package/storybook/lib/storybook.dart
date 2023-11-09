@@ -1,53 +1,74 @@
 library storybook;
 
+import 'constants.dart';
+import 'home.dart';
 import 'package:flutter/material.dart';
 
-part 'widgets/typography.dart';
-
-class StoryBook extends StatelessWidget {
+class StoryBook extends StatefulWidget {
   const StoryBook({super.key});
+
+  @override
+  State<StoryBook> createState() => _StoryBookState();
+}
+
+class _StoryBookState extends State<StoryBook> {
+  bool useMaterial3 = true;
+  ThemeMode themeMode = ThemeMode.system;
+  ColorSeed colorSelected = ColorSeed.baseColor;
+
+  bool get useLightMode {
+    switch (themeMode) {
+      case ThemeMode.system:
+        return View.of(context).platformDispatcher.platformBrightness ==
+            Brightness.light;
+      case ThemeMode.light:
+        return true;
+      case ThemeMode.dark:
+        return false;
+    }
+  }
+
+  void handleBrightnessChange(bool useLightMode) {
+    setState(() {
+      themeMode = useLightMode ? ThemeMode.light : ThemeMode.dark;
+    });
+  }
+
+  void handleMaterialVersionChange() {
+    setState(() {
+      useMaterial3 = !useMaterial3;
+    });
+  }
+
+  void handleColorSelect(int value) {
+    setState(() {
+      colorSelected = ColorSeed.values[value];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Story Book',
-      routes: {
-        '/': (context) => const StoryBookHome(),
-        '/typography': (context) => const TypographyStory(),
-        // '/buttons': (context) => ButtonsStory(),
-        // '/colors': (context) => ColorsStory(),
-      },
-    );
-  }
-}
-
-class StoryBookHome extends StatelessWidget {
-  const StoryBookHome({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Story Book'),
+      debugShowCheckedModeBanner: false,
+      title: 'Material 3',
+      themeMode: themeMode,
+      theme: ThemeData(
+        colorSchemeSeed: colorSelected.color,
+        useMaterial3: useMaterial3,
+        brightness: Brightness.light,
       ),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, '/typography');
-                  },
-                  child: const Text('Typography'),
-                ),
-              ),
-            ],
-          ),
-        ),
+      darkTheme: ThemeData(
+        colorSchemeSeed: colorSelected.color,
+        useMaterial3: useMaterial3,
+        brightness: Brightness.dark,
+      ),
+      home: Home(
+        useLightMode: useLightMode,
+        useMaterial3: useMaterial3,
+        colorSelected: colorSelected,
+        handleBrightnessChange: handleBrightnessChange,
+        handleMaterialVersionChange: handleMaterialVersionChange,
+        handleColorSelect: handleColorSelect,
       ),
     );
   }
