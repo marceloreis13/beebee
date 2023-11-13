@@ -9,6 +9,7 @@ import 'material_example/home.dart';
 part 'widgets/buttons/button.primary.dart';
 part 'widgets/buttons/button.secondary.dart';
 part 'widgets/buttons/button.text.dart';
+part 'widgets/cards/card.form.dart';
 
 class StoryBook extends StatefulWidget {
   const StoryBook({super.key});
@@ -73,6 +74,23 @@ class _StoryBookState extends State<StoryBook> with TickerProviderStateMixin {
                 child: const Text('Text'),
                 onPressed: () {},
               ),
+              CardForm(
+                isOutside: true,
+                title: 'Card Form',
+                buttonPrimary: ButtonPrimary(
+                  onPressed: () {},
+                  child: const Text('Submit'),
+                ),
+                child: const Column(
+                  children: [
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Label',
+                      ),
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
           // Typography Tab
