@@ -7,6 +7,7 @@ import 'package:app/domain/providers/user/user.dependencies.dart';
 import 'package:app/domain/services/signup.service.dart';
 import 'package:app/ui/features/signin/widgets/form/signin.form.vendors.widget.dart';
 import 'package:app/ui/widgets/app/scaffold.clean.widget.dart';
+import 'package:storybook/storybook.dart';
 
 class SigninFormView extends StatefulWidget {
   const SigninFormView._();
@@ -97,16 +98,33 @@ class _SigninFormViewState extends State<SigninFormView>
           ),
           SizedBox(
             width: 300,
-            child: ElevatedButton(
+            child: ButtonPrimary(
               onPressed: onboardingOnPressed,
               child: const Text("Entrar!"),
             ),
           ),
           SizedBox(
             width: 300,
-            child: ElevatedButton(
-              onPressed: onStoryBookOnPressed,
+            child: ButtonSecondary(
+              onPressed: () async {
+                Navigator.pushNamed(
+                  context,
+                  Routes.storyBookView.value,
+                );
+              },
               child: const Text("StoryBook!"),
+            ),
+          ),
+          SizedBox(
+            width: 300,
+            child: ButtonText(
+              onPressed: () async {
+                Navigator.pushNamed(
+                  context,
+                  Routes.materialExample.value,
+                );
+              },
+              child: const Text("Material Example!"),
             ),
           ),
           SigninFormVendorsWidget(
@@ -116,13 +134,6 @@ class _SigninFormViewState extends State<SigninFormView>
           ),
         ],
       ),
-    );
-  }
-
-  Future onStoryBookOnPressed() async {
-    Navigator.pushNamed(
-      context,
-      Routes.storyBookView.value,
     );
   }
 

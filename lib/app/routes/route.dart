@@ -18,7 +18,8 @@ enum Routes {
   signinFormValidationView,
   signinFormNewPassView,
 
-  storyBookView
+  storyBookView,
+  materialExample
 }
 
 extension RoutesExtension on Routes {
@@ -84,6 +85,8 @@ Route<dynamic> controller(RouteSettings settings) {
     // Vehicle
     case Routes.vehicleListView:
       return MaterialPageRoute(builder: (context) => VehicleListView.init());
+    case Routes.materialExample:
+      return MaterialPageRoute(builder: (context) => const MaterialExample());
     case Routes.storyBookView:
       return MaterialPageRoute(builder: (context) => const StoryBook());
 
