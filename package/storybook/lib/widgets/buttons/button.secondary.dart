@@ -4,7 +4,7 @@ class ButtonSecondary extends StatelessWidget {
   final Function()? onPressed;
   final Icon? icon;
   final Widget child;
-  final bool? isDisabled;
+  final bool isDisabled;
 
   const ButtonSecondary({
     super.key,
@@ -18,14 +18,14 @@ class ButtonSecondary extends StatelessWidget {
   Widget build(BuildContext context) {
     if (icon != null) {
       return OutlinedButton.icon(
-        onPressed: isDisabled == true ? null : onPressed,
+        onPressed: isDisabled ? null : onPressed,
         icon: icon!,
         label: child,
       );
     }
 
     return OutlinedButton(
-      onPressed: isDisabled == true ? null : onPressed!,
+      onPressed: isDisabled ? null : onPressed,
       child: child,
     );
   }

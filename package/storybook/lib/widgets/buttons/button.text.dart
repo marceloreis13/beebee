@@ -4,7 +4,7 @@ class ButtonText extends StatelessWidget {
   final Function()? onPressed;
   final Icon? icon;
   final Widget child;
-  final bool? isDisabled;
+  final bool isDisabled;
 
   const ButtonText({
     super.key,
@@ -18,14 +18,14 @@ class ButtonText extends StatelessWidget {
   Widget build(BuildContext context) {
     if (icon != null) {
       return TextButton.icon(
-        onPressed: isDisabled == true ? null : onPressed,
+        onPressed: isDisabled ? null : onPressed,
         icon: icon!,
         label: child,
       );
     }
 
     return TextButton(
-      onPressed: isDisabled == true ? null : onPressed!,
+      onPressed: isDisabled ? null : onPressed,
       child: child,
     );
   }
