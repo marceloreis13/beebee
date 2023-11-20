@@ -1,10 +1,10 @@
 import 'dart:async';
 
+import 'package:app/app/helpers/api/responses/api.response.helper.dart';
 import 'package:dio/dio.dart';
 import 'package:app/app/constants/env.dart';
 import 'package:app/app/extensions/dio.extension.dart';
 import 'package:app/app/extensions/error.extension.dart';
-import 'package:app/app/helpers/api.helper.dart';
 import 'package:app/domain/models/vehicle/vehicle.model.dart';
 import 'package:app/domain/models/model.dart';
 import 'package:app/domain/providers/vehicle/vehicle.dependencies.dart';
@@ -22,12 +22,6 @@ class VehicleService extends ServiceProtocol {
 
   // CRUD functions
 
-  @override
-  Future<ApiResponse<Vehicle>> get(String id) {
-    throw UnimplementedError();
-  }
-
-  @override
   Future<ApiResponse> getAll() async {
     try {
       final source = await provider.getAll();
@@ -49,7 +43,6 @@ class VehicleService extends ServiceProtocol {
     }
   }
 
-  @override
   Future<ApiResponse<dynamic>> add(dynamic model) async {
     try {
       vehicle ??= model;
@@ -103,7 +96,6 @@ class VehicleService extends ServiceProtocol {
     }
   }
 
-  @override
   Future<ApiResponse> delete(dynamic item) {
     Vehicle vehicle = item;
     Env.user.vehicles ??= [];
@@ -112,11 +104,9 @@ class VehicleService extends ServiceProtocol {
     return update((item as Vehicle).copyWith(status: Status.deleted));
   }
 
-  @override
   Future<ApiResponse> archive(dynamic item) =>
       update((item as Vehicle).copyWith(status: Status.archived));
 
-  @override
   Future<ApiResponse> unarchive(dynamic item) =>
       update((item as Vehicle).copyWith(status: Status.activated));
 

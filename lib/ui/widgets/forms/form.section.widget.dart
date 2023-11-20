@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class VMFormSectionWidget extends StatelessWidget {
+class BBFormSectionWidget extends StatelessWidget {
   final String? title;
   final TextAlign titleAlign;
   final Color? cardColor;
@@ -11,7 +11,7 @@ class VMFormSectionWidget extends StatelessWidget {
   EdgeInsets? wrapPadding;
   EdgeInsets? paddingBottom;
 
-  VMFormSectionWidget({
+  BBFormSectionWidget({
     super.key,
     required this.children,
     this.title,

@@ -75,7 +75,7 @@ Routes parseRoute(dynamic name) {
 // controller function with switch statement to control page route flow
 Route<dynamic> controller(RouteSettings settings) {
   Routes route = parseRoute(settings.name);
-  final arguments = (settings.arguments ?? <String, dynamic>{}) as Map;
+  // final arguments = (settings.arguments ?? <String, dynamic>{}) as Map;
 
   switch (route) {
     // Vehicle

@@ -1,19 +1,18 @@
+import 'package:app/domain/providers/user/user.dependencies.dart';
+import 'package:app/domain/services/user.service.dart';
+import 'package:app/ui/features/signin/widgets/form/signin.form.widget.dart';
+import 'package:app/ui/widgets/forms/form.scaffold.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:app/app/constants/env.dart';
-import 'package:app/app/helpers/notify.helper.dart';
-import 'package:app/app/routes/route.dart';
-import 'package:app/domain/providers/user/user.dependencies.dart';
-import 'package:app/domain/services/signup.service.dart';
-import 'package:app/ui/features/signin/widgets/form/signin.form.vendors.widget.dart';
-import 'package:app/ui/widgets/app/scaffold.clean.widget.dart';
+
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class SigninFormView extends StatefulWidget {
   const SigninFormView._();
   static Widget init() => ChangeNotifierProvider(
         lazy: false,
-        create: (context) => SignupService(
-          providerUser: context.read<UserProviderProtocol>(),
+        create: (context) => UserService(
+          provider: context.read<UserProviderProtocol>(),
         ),
         child: const SigninFormView._(),
       );
@@ -22,11 +21,11 @@ class SigninFormView extends StatefulWidget {
   State<SigninFormView> createState() => _SigninFormViewState();
 }
 
-class _SigninFormViewState extends State<SigninFormView>
-    with SingleTickerProviderStateMixin {
-  late SignupService service;
+class _SigninFormViewState extends State<SigninFormView> {
+  late UserService service;
 
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  final GlobalKey<FormBuilderState> fbKey = GlobalKey<FormBuilderState>();
 
   @override
   void initState() {
@@ -36,109 +35,46 @@ class _SigninFormViewState extends State<SigninFormView>
   }
 
   void setUp() {
-    service = context.read<SignupService>();
-    // UserBusiness.googleSignIn.signInSilently();
+    service = context.read<UserService>();
   }
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      child: ScaffoldClean(
-        scaffoldKey: _scaffoldKey,
-        body: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: 100.0,
-                    right: 32,
-                    bottom: 8,
-                    left: 32,
-                  ),
-                  child: SizedBox(
-                    width: 300,
-                    child: Column(
-                      children: [
-                        Text(
-                          Remote.appNameDisplay.string,
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.displayLarge,
-                        ),
-                        const Divider(),
-                        Text(
-                          Remote.appMessagePromotional.string,
-                          textAlign: TextAlign.center,
-                          style: Theme.of(context).textTheme.titleLarge,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                buildForm(context),
-              ],
-            ),
+    return FormScaffold(
+      title: 'Bee Bee',
+      form: <Widget>[
+        FormBuilder(
+          key: fbKey,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              form,
+              actions,
+            ],
           ),
-        ),
-      ),
-      onWillPop: () async {
-        return !Navigator.of(context).userGestureInProgress;
-      },
+        )
+      ],
+      scaffoldKey: scaffoldKey,
     );
   }
 
-  Widget buildForm(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.only(top: 14.0),
-      child: Column(
-        children: <Widget>[
-          const SizedBox(
-            height: 24,
-          ),
-          SizedBox(
-            width: 300,
-            child: ElevatedButton(
-              onPressed: onboardingOnPressed,
-              child: const Text("Entrar!"),
-            ),
-          ),
-          SigninFormVendorsWidget(
-            btnCredentialsLoginDidTapped: btnCredentialsLoginDidTapped,
-            btnGoogleLoginDidTapped: btnGoogleLoginDidTapped,
-            btnAppleLoginDidTapped: btnAppleLoginDidTapped,
-          ),
-        ],
+  Widget get form {
+    return SigninFormWidget(
+      user: service.user,
+      onChange: onFormChange,
+    );
+  }
+
+  Widget get actions {
+    return Padding(
+      padding: const EdgeInsets.only(top: 30, bottom: 30),
+      child: ElevatedButton(
+        child: const Text('Entrar'),
+        onPressed: () {
+          // final response = service.signin();
+        },
       ),
     );
-  }
-
-  Future onboardingOnPressed() async {
-    Routes.goTo.rootLoggedIn(context);
-  }
-
-  Future btnCredentialsLoginDidTapped() async {
-    Navigator.pushNamed(
-      context,
-      Routes.signinFormCredentialsView.value,
-    );
-  }
-
-  Future btnGoogleLoginDidTapped() async {
-    await btnSocialLoginDidTapped('google');
-  }
-
-  Future btnAppleLoginDidTapped() async {
-    await btnSocialLoginDidTapped('apple');
-  }
-
-  Future btnSocialLoginDidTapped(String option) async {
-    // final response = await service.signup(option);
-    if (mounted) {
-      Notify.snack.hide(context);
-
-      Env.isLoggedIn(logged: true);
-      Routes.goTo.rootLoggedIn(context);
-    }
   }
 
   void onFormChange(String? fieldName, dynamic value) {

@@ -46,7 +46,7 @@
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		EMc0WfnYtX7fJ5g0Q2tPox2cVQA=
+		u6JtcgLZp3EBQJydI2LOLUr6KzE=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -54,7 +54,7 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		xcfTWOSJ6EUzFQJZiZA2TR7yKtE=
+		p8RX1QfTmxWKSeeOE40T+qHw4uo=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
 		<data>
@@ -70,7 +70,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/NOTICES.Z</key>
 		<data>
-		IiSlr06hg+tNnJEUfn1VP0sFLTQ=
+		+M65EmHk5yrh6iQaJtpOyA37sFQ=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/fonts/Ubuntu/Ubuntu-Bold.ttf</key>
 		<data>
@@ -118,7 +118,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		qIRZZO3leABAMtGvPitCgeus3p4=
+		SXQPx10ftybAnLpDg00aVb6DOMU=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/shaders/ink_sparkle.frag</key>
 		<data>
@@ -1128,7 +1128,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			lcJ7TZzVPdPgMSuOvim9l+PCGft0FAtvvCyh4/xEDuI=
+			QDLO+pYWYR9JwHLLa4af9wUDSemLfbqk6OCCI+QiEu8=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -1142,7 +1142,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			rysPj3DoZk34xCqwc0DjkjTLnVjDEBsQqEfXYDiYM2E=
+			lCXotb5UbAp7vxli4Gx+4/fPhW/2jVujAgyc/ki7pGI=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.bin</key>
@@ -1170,7 +1170,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			toeizHG2pIjWOXiKPtflcWSpnEUOOgwa/qI6yvRT0f0=
+			zDQBEmBw5jBMLmIeMBkLqMl2j6cPYn9jwkArtSI8jig=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/fonts/Ubuntu/Ubuntu-Bold.ttf</key>
@@ -1254,7 +1254,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			1OSBTtVDiyQbR6o1p35AAybGZEfl5NGC1YgSVt4pDAA=
+			uoOXKdp01j6dvH8qs6lyzx3sI003KyH+d+rGgzrU/I0=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/shaders/ink_sparkle.frag</key>

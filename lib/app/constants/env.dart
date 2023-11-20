@@ -22,9 +22,11 @@ class Env {
   }
 
   static String get baseUrl {
-    return Env.debugMode
-        ? 'http://192.168.100.225:3000'
-        : Remote.appBaseUrl.string;
+    return Remote.appBaseUrl.string;
+  }
+
+  static String get baseUrlLegacy {
+    return Remote.appBaseUrl.string;
   }
 
   static String googlePlayIdentifier = 'br.log.beebee';
@@ -138,7 +140,8 @@ class Env {
 
   static Map<String, dynamic> remoteconfigDefaults = {
     // Application
-    Remote.appBaseUrl.constant: 'https://api.scaffold.com.br',
+    Remote.appBaseUrl.constant: 'https://api.beebee.vc',
+    Remote.appBaseUrlLegacy.constant: 'https://api.hom.beebee.com.br',
     Remote.appNameDisplay.constant: 'App Scaffold',
     Remote.appDesc.constant:
         'Solução logística para grandes e pequenas empresas',
@@ -196,6 +199,7 @@ class Env {
 enum Remote {
   // Application
   appBaseUrl,
+  appBaseUrlLegacy,
   appNameDisplay,
   appDesc,
   appDomain,

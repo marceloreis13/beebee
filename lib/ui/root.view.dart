@@ -5,7 +5,6 @@ import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:app/app/constants/env.dart';
 import 'package:app/app/helpers/forms.helper.dart';
-import 'package:app/domain/models/user/user.model.dart';
 import 'package:app/domain/providers/user/user.dependencies.dart';
 import 'package:app/domain/providers/user/user.provider.dart';
 import 'package:app/domain/providers/vehicle/vehicle.dependencies.dart';
@@ -72,7 +71,7 @@ class _RootViewStageState extends State<RootViewStage>
           requestiOSPermission();
 
           // Setup the user
-          setUpUserSession();
+          // setUpUserSession();
 
           // Changin status bar color according theme mode
           // changeStatusColor();
@@ -125,10 +124,10 @@ class _RootViewStageState extends State<RootViewStage>
       await setUpFirebaseRemoteConfig();
 
       // Setup the firebase notification
-      final fcmToken = await setUpFirebaseMessaging();
+      // final fcmToken = await setUpFirebaseMessaging();
 
       // Setup the user
-      await setUpUserSession(fcmToken: fcmToken);
+      // await setUpUserSession(fcmToken: fcmToken);
 
       return await Env.isLoggedIn();
     } catch (e) {
@@ -206,24 +205,24 @@ class _RootViewStageState extends State<RootViewStage>
     });
   }
 
-  Future<void> setUpUserSession({String? fcmToken}) async {
-    try {
-      final response = await widget.serviceUser.setUpUserSession(
-        fcmToken: fcmToken,
-      );
+  // Future<void> setUpUserSession({String? fcmToken}) async {
+  //   try {
+  //     final response = await widget.serviceUser.setUpUserSession(
+  //       fcmToken: fcmToken,
+  //     );
 
-      // Authenticate that user
-      if (response.success) {
-        User user = response.object!;
+  //     // Authenticate that user
+  //     if (response.success) {
+  //       User user = response.object!;
 
-        Log.i(
-          'User Session Configured!\nUserID: ${user.id}\nUDID: ${user.udid}\nFCM: ${user.fcmToken}',
-        );
-      } else {
-        Log.e('User Session Failured!', error: response.message);
-      }
-    } catch (e) {
-      Log.e('[root.view]', error: e);
-    }
-  }
+  //       Log.i(
+  //         'User Session Configured!\nUserID: ${user.id}\nUDID: ${user.udid}\nFCM: ${user.fcmToken}',
+  //       );
+  //     } else {
+  //       Log.e('User Session Failured!', error: response.message);
+  //     }
+  //   } catch (e) {
+  //     Log.e('[root.view]', error: e);
+  //   }
+  // }
 }

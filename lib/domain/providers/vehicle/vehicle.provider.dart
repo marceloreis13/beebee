@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:app/app/helpers/api.helper.dart';
+import 'package:app/app/helpers/api/api.helper.dart';
 import 'package:app/domain/models/vehicle/vehicle.model.dart';
 import 'package:app/domain/providers/vehicle/vehicle.dependencies.dart';
 import 'package:app/app/helpers/debugger.helper.dart';

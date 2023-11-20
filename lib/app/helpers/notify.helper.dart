@@ -1,7 +1,7 @@
 import 'package:app/app/constants/constant.dart';
 import 'package:app/app/constants/env.dart';
+import 'package:app/app/helpers/api/responses/api.response.helper.dart';
 import 'package:app/app/helpers/debugger.helper.dart';
-import 'package:app/app/helpers/api.helper.dart';
 import 'package:flutter/material.dart';
 
 class NotifyAction {
@@ -127,7 +127,8 @@ extension NotifyExtension on Notify {
 
     var message_ = message ?? notify.message;
     if (this == Notify.response && apiResponse != null) {
-      notify = apiResponse.success ? Notify.success : Notify.failure;
+      final success = apiResponse.success == true;
+      notify = success ? Notify.success : Notify.failure;
       message_ = apiResponse.message ?? message_;
     }
 
