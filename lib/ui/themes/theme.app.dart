@@ -88,7 +88,7 @@ class ThemeApp extends ChangeNotifier {
     return ThemeData(
       // Common
       useMaterial3: true,
-      fontFamily: 'Ubuntu',
+      fontFamily: 'Roboto',
 
       // Custom
       scaffoldBackgroundColor: Colors.grey.shade200,
@@ -112,7 +112,7 @@ class ThemeApp extends ChangeNotifier {
   ThemeData darkTheme() {
     return ThemeData(
       useMaterial3: true,
-      fontFamily: 'Ubuntu',
+      fontFamily: 'Roboto',
 
       // Custom
       scaffoldBackgroundColor: Colors.black,

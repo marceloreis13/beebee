@@ -82,7 +82,9 @@ flutter:
 
   assets:
     # Logos
-    - assets/img/launch-screen.png
+    - assets/img/bee-dark.png
+    - assets/img/bee-white.png
+    - assets/img/splash.png
 
   fonts:
     - family: Ubuntu
@@ -96,3 +98,15 @@ flutter:
         - asset: assets/fonts/Ubuntu/Ubuntu-MediumItalic.ttf
         - asset: assets/fonts/Ubuntu/Ubuntu-Regular.ttf
           weight: 700
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto/Roboto-Bold.ttf
+        - asset: assets/fonts/Roboto/Roboto-BoldItalic.ttf
+        - asset: assets/fonts/Roboto/Roboto-Italic.ttf
+        - asset: assets/fonts/Roboto/Roboto-Light.ttf
+        - asset: assets/fonts/Roboto/Roboto-LightItalic.ttf
+        - asset: assets/fonts/Roboto/Roboto-Medium.ttf
+        - asset: assets/fonts/Roboto/Roboto-MediumItalic.ttf
+        - asset: assets/fonts/Roboto/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto/Roboto-Thin.ttf
+        - asset: assets/fonts/Roboto/Roboto-ThinItalic.ttf
