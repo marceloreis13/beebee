@@ -41,14 +41,32 @@ extension RoutesExtension on Routes {
   void rootLoggedOut(BuildContext context, {Function()? completion}) {
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(
-        builder: (context) => SigninFormView.init(),
+      PageRouteBuilder(
+        transitionDuration: const Duration(milliseconds: 600),
+        pageBuilder: (
+          context,
+          animation,
+          secondaryAnimation,
+        ) =>
+            SigninFormView.init(),
+        transitionsBuilder: (
+          context,
+          animation,
+          secondaryAnimation,
+          child,
+        ) =>
+            FadeTransition(
+          opacity: animation,
+          child: child,
+        ),
       ),
-    ).then((value) {
-      if (completion != null) {
-        completion();
-      }
-    });
+    ).then(
+      (value) {
+        if (completion != null) {
+          completion();
+        }
+      },
+    );
   }
 
   String get value {

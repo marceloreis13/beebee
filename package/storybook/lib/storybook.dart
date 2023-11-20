@@ -24,7 +24,7 @@ class _StoryBookState extends State<StoryBook> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
   }
 
   @override
@@ -63,34 +63,34 @@ class _StoryBookState extends State<StoryBook> with TickerProviderStateMixin {
                 subtitle: Text('Primary, Secondary and Text'),
               ),
               ButtonPrimary(
-                child: const Text('Primary'),
+                label: 'Primary',
                 onPressed: () {},
               ),
               ButtonSecondary(
-                child: const Text('Secondary'),
+                label: 'Secondary',
                 onPressed: () {},
               ),
               ButtonText(
-                child: const Text('Text'),
+                label: 'Text',
                 onPressed: () {},
               ),
-              CardForm(
-                isOutside: true,
-                title: 'Card Form',
-                buttonPrimary: ButtonPrimary(
-                  onPressed: () {},
-                  child: const Text('Submit'),
-                ),
-                child: const Column(
-                  children: [
-                    TextField(
-                      decoration: InputDecoration(
-                        labelText: 'Label',
-                      ),
-                    ),
-                  ],
-                ),
-              )
+              // CardForm(
+              //   isOutside: true,
+              //   title: 'Card Form',
+              //   buttonPrimary: ButtonPrimary(
+              //     onPressed: () {},
+              //     child: const Text('Submit'),
+              //   ),
+              //   child: const Column(
+              //     children: [
+              //       TextField(
+              //         decoration: InputDecoration(
+              //           labelText: 'Label',
+              //         ),
+              //       ),
+              //     ],
+              //   ),
+              // )
             ],
           ),
           // Typography Tab

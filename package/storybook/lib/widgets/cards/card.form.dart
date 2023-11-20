@@ -3,21 +3,25 @@ part of storybook;
 const smallPadding = 16.0;
 const mediumPadding = 32.0;
 const smallSpacing = 10.0;
-const double widthConstraint = 450;
+const double widthConstraint = 1000;
 
 class CardForm extends StatefulWidget {
+  final ButtonPrimary? buttonPrimary;
+  final EdgeInsets? wrapPadding;
+  final String? title;
+  final double cardPadding;
+  final dynamic child;
+  final double? elevation;
+
   const CardForm({
     super.key,
     required this.child,
-    required this.title,
     this.buttonPrimary,
-    this.isOutside = false,
+    this.cardPadding = mediumPadding,
+    this.title,
+    this.wrapPadding = const EdgeInsets.only(bottom: 32),
+    this.elevation = 0,
   });
-
-  final String title;
-  final Widget child;
-  final bool? isOutside;
-  final ButtonPrimary? buttonPrimary;
 
   @override
   State<CardForm> createState() => _CardFormState();
@@ -29,69 +33,88 @@ class _CardFormState extends State<CardForm> {
   @override
   Widget build(BuildContext context) {
     return RepaintBoundary(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: smallSpacing),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Visibility(
-              visible: widget.isOutside!,
-              child: title(context),
+      child: Focus(
+        focusNode: focusNode,
+        canRequestFocus: true,
+        child: GestureDetector(
+          onTapDown: (_) {
+            focusNode.requestFocus();
+          },
+          behavior: HitTestBehavior.opaque,
+          child: Card(
+            elevation: widget.elevation,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(12)),
             ),
-            ConstrainedBox(
-              constraints:
-                  const BoxConstraints.tightFor(width: widthConstraint),
-              // Tapping within the a component card should request focus for that component's children.
-              child: Focus(
-                focusNode: focusNode,
-                canRequestFocus: true,
-                child: GestureDetector(
-                  onTapDown: (_) {
-                    focusNode.requestFocus();
-                  },
-                  behavior: HitTestBehavior.opaque,
-                  child: Card(
-                    elevation: 0,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(12)),
-                    ),
-                    child: Padding(
-                        padding: const EdgeInsets.fromLTRB(mediumPadding,
-                            smallPadding, mediumPadding, mediumPadding),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Visibility(
-                              visible: !widget.isOutside!,
-                              child: title(context),
-                            ),
-                            widget.child,
-                            if (widget.buttonPrimary != null)
-                              Padding(
-                                padding:
-                                    const EdgeInsets.only(top: mediumPadding),
-                                child: widget.buttonPrimary,
-                              ),
-                          ],
-                        )),
+            child: Padding(
+              padding: EdgeInsets.all(widget.cardPadding),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (widget.child is Widget)
+                    wrapField(widget.child, noPadding: true)
+                  else if (widget.child is List<Widget>)
+                    ...widget.child
+                        .asMap()
+                        .entries
+                        .map(
+                          (entry) => wrapField(
+                            entry.value,
+                            noPadding: entry.key == widget.child.length - 1,
+                          ),
+                        )
+                        .toList(),
+                  Visibility(
+                    visible: widget.buttonPrimary != null,
+                    child: widget.buttonPrimary ?? const SizedBox(),
                   ),
-                ),
+                ],
               ),
             ),
-          ],
+          ),
         ),
       ),
     );
   }
 
-  Widget title(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: smallPadding),
-      child: Text(
-        widget.title,
-        style: Theme.of(context).textTheme.headlineMedium,
-        textAlign: TextAlign.left,
-      ),
+  Widget wrapField(Widget field, {bool noPadding = false}) {
+    final isHidden = field is Visibility && !field.visible;
+    EdgeInsets? padding =
+        isHidden || noPadding ? EdgeInsets.zero : widget.wrapPadding;
+
+    return Column(
+      children: <Widget>[
+        Container(
+          padding: padding,
+          child: field,
+        ),
+      ],
+    );
+  }
+}
+
+class ColumnSpacer extends StatelessWidget {
+  final List<Widget> children;
+  final double spacing;
+
+  const ColumnSpacer({
+    super.key,
+    required this.children,
+    this.spacing = 32.0,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: children
+          .map((c) => Container(
+                padding: EdgeInsets.only(
+                  bottom: c is Visibility && !c.visible ? 0 : spacing,
+                ),
+                child: c,
+              ))
+          .toList(),
     );
   }
 }

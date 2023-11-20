@@ -3,15 +3,17 @@ part of storybook;
 class ButtonSecondary extends StatelessWidget {
   final Function()? onPressed;
   final Icon? icon;
-  final Widget child;
+  final String label;
+  final TextStyle? textStyle;
   final bool isDisabled;
 
   const ButtonSecondary({
     super.key,
-    required this.child,
+    required this.label,
     this.icon,
     this.isDisabled = false,
     this.onPressed,
+    this.textStyle,
   });
 
   @override
@@ -20,13 +22,20 @@ class ButtonSecondary extends StatelessWidget {
       return OutlinedButton.icon(
         onPressed: isDisabled ? null : onPressed,
         icon: icon!,
-        label: child,
+        label: _buildLabel(),
       );
     }
 
     return OutlinedButton(
       onPressed: isDisabled ? null : onPressed,
-      child: child,
+      child: _buildLabel(),
+    );
+  }
+
+  Widget _buildLabel() {
+    return Text(
+      label,
+      style: textStyle,
     );
   }
 }
