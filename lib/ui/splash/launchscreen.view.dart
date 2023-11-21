@@ -35,58 +35,46 @@ class _LaunchScreenState extends State<LaunchScreen> {
           SizedBox(
             width: MediaQuery.of(context).size.width,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 32),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  height: MediaQuery.of(context).size.height * 0.5,
+                Expanded(
                   child: Container(
-                    alignment: Alignment.centerRight, // added this line
-                    decoration: const BoxDecoration(
-                      // color: Colors.orangeAccent,
-                      image: DecorationImage(
-                        image: AssetImage("assets/img/splash.png"),
-                        fit: BoxFit.fitWidth,
-                        alignment: Alignment.bottomRight,
-                      ),
-                    ),
+                    constraints: const BoxConstraints(maxWidth: 512),
+                    alignment: Alignment.centerRight,
+                    child: Image.asset('assets/img/splash.png'),
                   ),
                 ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 64,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Hero(
-                          tag: 'splash-logo',
-                          child: SizedBox(
-                            width: 48,
-                            height: 48,
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                image: DecorationImage(
-                                  image: AssetImage('assets/img/bee-white.png'),
-                                  fit: BoxFit.contain,
-                                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 96,
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Hero(
+                        tag: 'splash-logo',
+                        child: SizedBox(
+                          width: 48,
+                          height: 48,
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                image: AssetImage('assets/img/bee-white.png'),
+                                fit: BoxFit.contain,
                               ),
-                              child: null,
                             ),
+                            child: null,
                           ),
                         ),
-                        const SizedBox(height: 24),
-                        Text('Entregas',
-                            style: Theme.of(context).textTheme.headlineLarge),
-                        Text('imediatas',
-                            style: Theme.of(context).textTheme.headlineLarge),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(height: 24),
+                      Text('Entregas',
+                          style: Theme.of(context).textTheme.headlineLarge),
+                      Text('imediatas',
+                          style: Theme.of(context).textTheme.headlineLarge),
+                    ],
                   ),
                 ),
               ],

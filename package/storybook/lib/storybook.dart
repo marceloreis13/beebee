@@ -10,6 +10,9 @@ part 'widgets/buttons/button.primary.dart';
 part 'widgets/buttons/button.secondary.dart';
 part 'widgets/buttons/button.text.dart';
 part 'widgets/cards/card.form.dart';
+part 'widgets/cards/card.mini.dart';
+part 'images/logo.image.widget.dart';
+part 'themes/theme.app.dart';
 
 class StoryBook extends StatefulWidget {
   const StoryBook({super.key});

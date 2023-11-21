@@ -1,4 +1,3 @@
-import 'package:app/ui/themes/theme.app.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:app/app/constants/env.dart';
@@ -9,6 +8,8 @@ import 'package:app/domain/services/signup.service.dart';
 import 'package:app/ui/features/signin/widgets/form/signin.form.vendors.widget.dart';
 import 'package:app/ui/widgets/app/scaffold.clean.widget.dart';
 import 'package:storybook/storybook.dart';
+
+import 'widgets/bottom.sheet.widget.dart';
 
 class SigninFormView extends StatefulWidget {
   const SigninFormView._();
@@ -44,33 +45,23 @@ class _SigninFormViewState extends State<SigninFormView>
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      child: ScaffoldClean(
-        bottom: false,
-        scaffoldKey: _scaffoldKey,
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
+    return ScaffoldClean(
+      scaffoldKey: _scaffoldKey,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisSize: MainAxisSize.min,
+          children: [
             Padding(
               padding: const EdgeInsets.all(16),
               child: Row(
                 children: [
-                  Hero(
+                  const Hero(
                     tag: 'splash-logo',
                     child: SizedBox(
                       width: 36,
                       height: 36,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: ThemeApp.isDark(context)
-                                ? const AssetImage('assets/img/bee-white.png')
-                                : const AssetImage('assets/img/bee-dark.png'),
-                            fit: BoxFit.contain,
-                          ),
-                        ),
-                        child: null,
-                      ),
+                      child: LogoImage(),
                     ),
                   ),
                   const Spacer(),
@@ -81,7 +72,8 @@ class _SigninFormViewState extends State<SigninFormView>
                 ],
               ),
             ),
-            const Expanded(child: SizedBox()),
+            const Expanded(child: SizedBox.expand()),
+
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Text(
@@ -89,59 +81,66 @@ class _SigninFormViewState extends State<SigninFormView>
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             ),
-            Hero(tag: 'splash-card', child: signForm(context)),
-            Row(
-              children: [
-                Expanded(
-                  child: Card(
-                    elevation: 0,
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(16),
-                        topRight: Radius.circular(16),
-                      ),
-                    ),
-                    child: InkWell(
-                      borderRadius: const BorderRadius.all(Radius.circular(16)),
-                      onTap: () {
-                        showModalBottomSheet<void>(
-                          showDragHandle: true,
-                          context: context,
-                          backgroundColor:
-                              Theme.of(context).colorScheme.surface,
-                          elevation: 1,
-                          builder: buildBottomSheet,
-                        );
-                      },
-                      child: Container(
-                        height: 48,
-                        alignment: Alignment.topCenter,
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 16),
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Colors.grey[500],
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(16)),
-                            ),
-                            width: 32,
-                            height: 4,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            )
+            Hero(
+              tag: 'splash-card',
+              child: signForm(context),
+            ),
+
             // buildForm(context),
           ],
         ),
       ),
-      onWillPop: () async {
-        return !Navigator.of(context).userGestureInProgress;
-      },
     );
+
+    // return WillPopScope(
+    //   child: Stack(
+    //     children: [
+    //       ScaffoldClean(
+    //         scaffoldKey: _scaffoldKey,
+    //         body: Column(
+    //           crossAxisAlignment: CrossAxisAlignment.start,
+    //           children: [
+    //             Padding(
+    //               padding: const EdgeInsets.all(16),
+    //               child: Row(
+    //                 children: [
+    //                   const Hero(
+    //                     tag: 'splash-logo',
+    //                     child: SizedBox(
+    //                       width: 36,
+    //                       height: 36,
+    //                       child: LogoImage(),
+    //                     ),
+    //                   ),
+    //                   const Spacer(),
+    //                   ButtonText(
+    //                     label: 'Quero cadastrar',
+    //                     onPressed: () {},
+    //                   )
+    //                 ],
+    //               ),
+    //             ),
+    //             const Expanded(child: SizedBox()),
+    //             Padding(
+    //               padding: const EdgeInsets.symmetric(horizontal: 16),
+    //               child: Text(
+    //                 'Informe o\nseu acesso',
+    //                 style: Theme.of(context).textTheme.headlineMedium,
+    //               ),
+    //             ),
+    //             Hero(tag: 'splash-card', child: signForm(context)),
+
+    //             // buildForm(context),
+    //           ],
+    //         ),
+    //       ),
+    //       const SigninBottomSheet()
+    //     ],
+    //   ),
+    //   onWillPop: () async {
+    //     return !Navigator.of(context).userGestureInProgress;
+    //   },
+    // );
   }
 
   Widget buildBottomSheet(context) {
@@ -152,64 +151,30 @@ class _SigninFormViewState extends State<SigninFormView>
         children: [
           Padding(
             padding: const EdgeInsets.only(bottom: 16.0),
-            child: Text(breakTextIfNeeded('Precisa de ajuda?'),
+            child: Text('Precisa de ajuda?',
                 style: Theme.of(context).textTheme.headlineMedium),
           ),
-          Row(
+          const Row(
             children: [
               Expanded(
-                child: card(context, 'Central de ajuda', 200),
+                child: CardMini(text: 'Central de ajuda', height: 200),
               ),
-              const SizedBox(width: 8),
+              SizedBox(width: 8),
               Expanded(
-                child: card(context, 'Falar pelo whatsapp', 200),
+                child: CardMini(text: 'Falar pelo whatsapp', height: 200),
               ),
             ],
           ),
           const SizedBox(height: 8),
-          card(context, 'Conversar pelo chat', 100)
+          const CardMini(text: 'Conversar pelo chat', height: 100)
         ],
       ),
     );
   }
 
-  Widget card(context, String text, double height) {
-    return Card(
-      elevation: 0,
-      child: InkWell(
-        onTap: () {},
-        borderRadius: const BorderRadius.all(Radius.circular(16)),
-        child: Container(
-          alignment: Alignment.bottomLeft,
-          height: height,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text(breakTextIfNeeded(text),
-                style: Theme.of(context).textTheme.bodyLarge),
-          ),
-        ),
-      ),
-    );
-  }
-
-  String breakTextIfNeeded(String text) {
-    // Define a threshold for the length of the text
-    const int threshold = 20;
-
-    // Check if the length of the text is below the threshold
-    if (text.length <= threshold) {
-      // Insert a line break at the middle of the text
-      int middleIndex = text.length ~/ 2;
-      text =
-          '${text.substring(0, middleIndex)}\n${text.substring(middleIndex)}';
-    }
-
-    return text;
-  }
-
   Widget signForm(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 32),
+      padding: const EdgeInsets.fromLTRB(16, 32, 16, 48),
       child: CardForm(
         cardPadding: 16,
         wrapPadding: const EdgeInsets.only(bottom: 16),
