@@ -9,7 +9,7 @@ import 'package:app/ui/features/signin/widgets/form/signin.form.vendors.widget.d
 import 'package:app/ui/widgets/app/scaffold.clean.widget.dart';
 import 'package:storybook/storybook.dart';
 
-import 'widgets/bottom.sheet.widget.dart';
+import 'widgets/signin.bottom.sheet.dart';
 
 class SigninFormView extends StatefulWidget {
   const SigninFormView._();
@@ -47,126 +47,59 @@ class _SigninFormViewState extends State<SigninFormView>
   Widget build(BuildContext context) {
     return ScaffoldClean(
       scaffoldKey: _scaffoldKey,
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                children: [
-                  const Hero(
-                    tag: 'splash-logo',
-                    child: SizedBox(
-                      width: 36,
-                      height: 36,
-                      child: LogoImage(),
+      bottom: false,
+      body: Stack(
+        children: [
+          LayoutBuilder(
+            builder: (context, constraints) {
+              return SingleChildScrollView(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    minWidth: constraints.maxWidth,
+                    minHeight: constraints.maxHeight,
+                  ),
+                  child: IntrinsicHeight(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Row(
+                            children: [
+                              const Hero(
+                                tag: 'splash-logo',
+                                child: SizedBox(
+                                  width: 36,
+                                  height: 36,
+                                  child: LogoImage(),
+                                ),
+                              ),
+                              const Spacer(),
+                              ButtonText(
+                                label: 'Quero cadastrar',
+                                onPressed: () {},
+                              )
+                            ],
+                          ),
+                          const Spacer(),
+                          Text(
+                            'Informe o\nseu acesso',
+                            style: Theme.of(context).textTheme.headlineMedium,
+                          ),
+                          Hero(
+                            tag: 'splash-card',
+                            child: signForm(context),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                  const Spacer(),
-                  ButtonText(
-                    label: 'Quero cadastrar',
-                    onPressed: () {},
-                  )
-                ],
-              ),
-            ),
-            const Expanded(child: SizedBox.expand()),
-
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                'Informe o\nseu acesso',
-                style: Theme.of(context).textTheme.headlineMedium,
-              ),
-            ),
-            Hero(
-              tag: 'splash-card',
-              child: signForm(context),
-            ),
-
-            // buildForm(context),
-          ],
-        ),
-      ),
-    );
-
-    // return WillPopScope(
-    //   child: Stack(
-    //     children: [
-    //       ScaffoldClean(
-    //         scaffoldKey: _scaffoldKey,
-    //         body: Column(
-    //           crossAxisAlignment: CrossAxisAlignment.start,
-    //           children: [
-    //             Padding(
-    //               padding: const EdgeInsets.all(16),
-    //               child: Row(
-    //                 children: [
-    //                   const Hero(
-    //                     tag: 'splash-logo',
-    //                     child: SizedBox(
-    //                       width: 36,
-    //                       height: 36,
-    //                       child: LogoImage(),
-    //                     ),
-    //                   ),
-    //                   const Spacer(),
-    //                   ButtonText(
-    //                     label: 'Quero cadastrar',
-    //                     onPressed: () {},
-    //                   )
-    //                 ],
-    //               ),
-    //             ),
-    //             const Expanded(child: SizedBox()),
-    //             Padding(
-    //               padding: const EdgeInsets.symmetric(horizontal: 16),
-    //               child: Text(
-    //                 'Informe o\nseu acesso',
-    //                 style: Theme.of(context).textTheme.headlineMedium,
-    //               ),
-    //             ),
-    //             Hero(tag: 'splash-card', child: signForm(context)),
-
-    //             // buildForm(context),
-    //           ],
-    //         ),
-    //       ),
-    //       const SigninBottomSheet()
-    //     ],
-    //   ),
-    //   onWillPop: () async {
-    //     return !Navigator.of(context).userGestureInProgress;
-    //   },
-    // );
-  }
-
-  Widget buildBottomSheet(context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 32),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 16.0),
-            child: Text('Precisa de ajuda?',
-                style: Theme.of(context).textTheme.headlineMedium),
+                ),
+              );
+            },
           ),
-          const Row(
-            children: [
-              Expanded(
-                child: CardMini(text: 'Central de ajuda', height: 200),
-              ),
-              SizedBox(width: 8),
-              Expanded(
-                child: CardMini(text: 'Falar pelo whatsapp', height: 200),
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          const CardMini(text: 'Conversar pelo chat', height: 100)
+          const SigninBottomSheet(),
         ],
       ),
     );
@@ -174,7 +107,7 @@ class _SigninFormViewState extends State<SigninFormView>
 
   Widget signForm(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 32, 16, 48),
+      padding: const EdgeInsets.only(top: 16, bottom: 48),
       child: CardForm(
         cardPadding: 16,
         wrapPadding: const EdgeInsets.only(bottom: 16),
@@ -220,6 +153,15 @@ class _SigninFormViewState extends State<SigninFormView>
     );
   }
 
+  Future onboardingOnPressed() async {
+    Routes.goTo.rootLoggedIn(context);
+  }
+
+  void onFormChange(String? fieldName, dynamic value) {
+    service.populate(fieldName, value);
+  }
+
+  // TODO: remove all this code below
   Widget buildForm(BuildContext context) {
     return Column(
       children: <Widget>[
@@ -263,10 +205,6 @@ class _SigninFormViewState extends State<SigninFormView>
     );
   }
 
-  Future onboardingOnPressed() async {
-    Routes.goTo.rootLoggedIn(context);
-  }
-
   Future btnCredentialsLoginDidTapped() async {
     Navigator.pushNamed(
       context,
@@ -290,9 +228,5 @@ class _SigninFormViewState extends State<SigninFormView>
       Env.isLoggedIn(logged: true);
       Routes.goTo.rootLoggedIn(context);
     }
-  }
-
-  void onFormChange(String? fieldName, dynamic value) {
-    service.populate(fieldName, value);
   }
 }
