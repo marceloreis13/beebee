@@ -1,4 +1,6 @@
+import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:app/app/constants/env.dart';
 import 'package:app/app/helpers/notify.helper.dart';
@@ -60,7 +62,7 @@ class _SigninFormViewState extends State<SigninFormView>
                   ),
                   child: IntrinsicHeight(
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         mainAxisSize: MainAxisSize.min,
@@ -69,11 +71,7 @@ class _SigninFormViewState extends State<SigninFormView>
                             children: [
                               const Hero(
                                 tag: 'splash-logo',
-                                child: SizedBox(
-                                  width: 36,
-                                  height: 36,
-                                  child: LogoImage(),
-                                ),
+                                child: LogoImage(),
                               ),
                               const Spacer(),
                               ButtonText(
@@ -107,13 +105,18 @@ class _SigninFormViewState extends State<SigninFormView>
 
   Widget signForm(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 16, bottom: 48),
+      padding: const EdgeInsets.only(top: 16, bottom: 64),
       child: CardForm(
-        cardPadding: 16,
-        wrapPadding: const EdgeInsets.only(bottom: 16),
-        child: <Widget>[
+        children: [
           TextFormField(
             onChanged: (value) => onFormChange('cpf', value),
+            keyboardType: TextInputType.number,
+            // add a OK button to the keyboard, it should focus the next field
+            textInputAction: TextInputAction.next,
+            inputFormatters: [
+              FilteringTextInputFormatter.digitsOnly,
+              CpfInputFormatter(),
+            ],
             decoration: const InputDecoration(
               labelText: 'CPF',
               hintText: '000.000.000-00',
@@ -142,7 +145,7 @@ class _SigninFormViewState extends State<SigninFormView>
                 onPressed: () {
                   Navigator.pushNamed(
                     context,
-                    Routes.storyBookView.value,
+                    Routes.passwordRecovery.value,
                   );
                 },
               ),

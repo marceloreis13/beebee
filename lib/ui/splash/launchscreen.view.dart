@@ -53,45 +53,17 @@ class _LaunchScreenState extends State<LaunchScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Hero(
+                      const Hero(
                         tag: 'splash-logo',
-                        child: SizedBox(
-                          width: 48,
-                          height: 48,
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                image: AssetImage('assets/img/bee-white.png'),
-                                fit: BoxFit.contain,
-                              ),
-                            ),
-                            child: null,
-                          ),
-                        ),
+                        child: LogoImage(size: 48),
                       ),
                       const SizedBox(height: 24),
-                      Text('Entregas',
-                          style: Theme.of(context).textTheme.headlineLarge),
-                      Text('imediatas',
+                      Text('Entregas\nimediatas',
                           style: Theme.of(context).textTheme.headlineLarge),
                     ],
                   ),
                 ),
               ],
-            ),
-          ),
-          const Positioned(
-            bottom: -512,
-            left: 10,
-            right: 10,
-            child: Hero(
-              tag: 'splash-card',
-              child: CardForm(
-                // title: 'Entrar',
-                child: SizedBox(
-                  height: 512,
-                ),
-              ),
             ),
           ),
         ],

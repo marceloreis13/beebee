@@ -1,3 +1,4 @@
+import 'package:app/ui/features/password/password.recovery.view.dart';
 import 'package:flutter/material.dart';
 
 // Available pages
@@ -17,6 +18,8 @@ enum Routes {
   signinFormRecoveryView,
   signinFormValidationView,
   signinFormNewPassView,
+
+  passwordRecovery,
 
   storyBookView,
   materialExample
@@ -102,11 +105,22 @@ Route<dynamic> controller(RouteSettings settings) {
   switch (route) {
     // Vehicle
     case Routes.vehicleListView:
-      return MaterialPageRoute(builder: (context) => VehicleListView.init());
+      return MaterialPageRoute(
+        builder: (context) => VehicleListView.init(),
+      );
     case Routes.materialExample:
-      return MaterialPageRoute(builder: (context) => const MaterialExample());
+      return MaterialPageRoute(
+        builder: (context) => const MaterialExample(),
+      );
+    case Routes.passwordRecovery:
+      return MaterialPageRoute(
+        builder: (context) => const PasswordRecoveryView(),
+      );
+
     case Routes.storyBookView:
-      return MaterialPageRoute(builder: (context) => const StoryBook());
+      return MaterialPageRoute(
+        builder: (context) => const StoryBook(),
+      );
 
     default:
       throw ('this route name does not exist');
